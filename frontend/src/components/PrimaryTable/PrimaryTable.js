@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import './_PrimaryTable.scss'
 
 function createRows(billData) {
     return billData.map((bill) => {

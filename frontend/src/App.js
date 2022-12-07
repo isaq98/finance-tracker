@@ -1,5 +1,5 @@
 import React from 'react'
-import PrimaryTable from './components/PrimaryTable';
+import PrimaryTable from './components/PrimaryTable/PrimaryTable';
 
 function App() {
   return (
