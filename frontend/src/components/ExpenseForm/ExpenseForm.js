@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import './_ExpenseForm.scss'
 
 function ExpenseForm(props) {
     const [cost, setCost] = useState('');

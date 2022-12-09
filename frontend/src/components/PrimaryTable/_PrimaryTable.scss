@@ -1,10 +1,12 @@
 .main-menu-table {
     width: 100%;
-    & > tr:nth-child(even) {
-        background: #E6E6E6;
-    }
-    & > tr:nth-child(odd) { 
-        background: #FFF;
+    & > tbody {
+        & > tr:nth-child(even) {
+            background: #E6E6E6;
+        }
+        & > tr:nth-child(odd) { 
+            background: #FFF;
+        }
     }
 }
 
