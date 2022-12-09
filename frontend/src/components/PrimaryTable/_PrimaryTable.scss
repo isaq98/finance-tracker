@@ -1,13 +1,14 @@
 .main-menu-table {
     width: 100%;
     & > tr:nth-child(even) {
-        background: #CCC;
+        background: #E6E6E6;
     }
     & > tr:nth-child(odd) { 
         background: #FFF;
     }
-    & > tr:first-child {
-        background-color: black;
-        color: white;
-    }
+}
+
+.main-menu-table-header {
+    background-color: black;
+    color: white;
 }

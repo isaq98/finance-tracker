@@ -43,10 +43,14 @@ function PrimaryTable(props) {
       (<p>Loading...</p>) :
       (
         <table className={className}>
-            <tr className={`${className ? `${className}-` : ''}header`}>
-                {createTableHeader(headers)}
+          <thead className={`${className ? `${className}-` : ''}header`}>
+            <tr>
+              {createTableHeader(headers)}
             </tr>
+          </thead>
+          <tbody className="main-menu-table-body">
             {createRows(Bills)}
+          </tbody>
         </table>
       )}
     </div>
