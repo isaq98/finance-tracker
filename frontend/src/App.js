@@ -1,6 +1,5 @@
 import React from 'react'
-import PrimaryTable from 'Components/PrimaryTable/PrimaryTable';
-import ExpenseForm from 'Components/ExpenseForm/ExpenseForm';
+import ExpenseForm from 'Components/ExpenseForm';
 import LandingPage from 'Components/LandingPage';
 import {Routes, Route} from 'react-router-dom';
 

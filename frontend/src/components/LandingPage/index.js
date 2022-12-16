@@ -5,18 +5,32 @@ import './_LandingPage.scss';
 
 function LandingPage() {
     const navigate = useNavigate();
-    const clickTest = () => {
+    const navigateToForm = () => {
         navigate('/expenseform');
     }
+
+    const determineGreeting = () => {
+        const date = new Date();
+        const time = date.getHours();
+        switch(true) {
+            case time > 12 && time < 16:
+                return "Good afternoon";
+            case time > 16 && time <= 23:
+                return "Good evening";
+            default:
+                return "Good morning";
+        }
+    }
+
     return (
         <div className="landing-page">
             <div className="center-content">
                 <div className="landing-text">
-                    <p>Good afternoon, what would you like to do?</p>
+                    <p>{determineGreeting()}, what would you like to do?</p>
                 </div>
                 <div className="button-div">
-                    <FancyButton buttonText='View' propClass='landing'/>
-                    <FancyButton buttonText='Create' propClass='landing' buttonFunction={clickTest}/>
+                    <FancyButton buttonText='view' propClass='landing'/>
+                    <FancyButton buttonText='create' propClass='landing' buttonFunction={navigateToForm}/>
                 </div>
             </div>
         </div>

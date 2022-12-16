@@ -5,6 +5,10 @@
     color: #FFF;
     border: solid;
     border-radius: 10px;
+    text-transform: capitalize;
+    &.create {
+        margin-left: auto;
+    }
 }
 
 .landing:hover {
