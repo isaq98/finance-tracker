@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import ExpenseTable from 'Components/ExpenseTable';
 import './_ExpenseForm.scss'
 
 function ExpenseForm(props) {
@@ -32,6 +33,7 @@ function ExpenseForm(props) {
                     <button type="submit">Create</button>
                 </form>
             </div>
+            <ExpenseTable />
         </div>
     )
 }
