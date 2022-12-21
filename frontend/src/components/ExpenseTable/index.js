@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './_ExpenseTable.scss';
+import { getAllBills } from '../../Services/ExpenseServices';
 
 function makeTableHeaders(data) {
     if(data) {
@@ -30,10 +31,10 @@ function ExpenseTable(props) {
         fetch('/bills')
             .then(res => res.json())
             .then(data => setBillData(data));
+        //setBillData(getAllBills());
     }, []);
 
     const {Bills} = billData;
-    console.log('value of data after the fetch request: ', Bills);
     return (
         <table className="expense-table">
             <thead className="expense-table-headers">

@@ -14,14 +14,16 @@
     padding-top: 50px;
     margin-bottom: 50px;
     & > form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1000px;
         border-style: solid;
         box-shadow: 5px 5px;
         padding: 25px 50px;
-        & > label {
-            padding-left: 15px;
-        }
-        & > button {
-            margin-left: 15px;
+        & > select, input, button {
+            width: 200px;
+            margin: 5px;
         }
     }
 }
