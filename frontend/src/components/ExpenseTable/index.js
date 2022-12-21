@@ -16,7 +16,7 @@ function makeTableRows(data) {
        return (
        <tr key={element.description} className={`expense-table-row-${index}`}>
             <td>{element.category}</td>
-            <td>{element.cost}</td>
+            <td>${element.cost}</td>
             <td>{element.date}</td>
             <td>{element.description}</td>
         </tr>
@@ -41,7 +41,7 @@ function ExpenseTable(props) {
                     {makeTableHeaders(Bills)}
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="expense-table-body">
                 {makeTableRows(Bills)}
             </tbody>
         </table>

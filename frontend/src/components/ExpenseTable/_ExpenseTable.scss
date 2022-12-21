@@ -5,5 +5,18 @@
     flex-direction: column;
     & > .expense-table-headers {
         text-transform: capitalize;
+        font-weight: bold;
+        & > tr {
+            & > td {
+                width: 250px;
+            }
+        }
+    }
+    & > .expense-table-body {
+        & > tr {
+            & > td {
+                width: 250px;
+            }
+        }
     }
 }
