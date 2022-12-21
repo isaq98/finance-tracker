@@ -1,9 +1,20 @@
 import React, {useState, useEffect} from 'react';
+import './_ExpenseTable.scss';
+
+function makeTableHeaders(data) {
+    if(data) {
+        const responseObj = data[0];
+        const tableHeaders = Object.keys(responseObj);
+        return tableHeaders.map((element) => {
+            return <td key={element}>{element}</td>
+        });
+    } 
+}
 
 function makeTableRows(data) {
-    return data.map((element) => {
+    return data.map((element, index) => {
        return (
-       <tr key={element.description}>
+       <tr key={element.description} className={`expense-table-row-${index}`}>
             <td>{element.category}</td>
             <td>{element.cost}</td>
             <td>{element.date}</td>
@@ -17,37 +28,21 @@ function ExpenseTable(props) {
     const [billData, setBillData] = useState([]);
     useEffect(() => {
         fetch('/bills')
-        .then((res) => res.json())
-        .then((data) => setBillData(data));
+            .then(res => res.json())
+            .then(data => setBillData(data));
     }, []);
 
-    // const makeTableRows = () => {
-    //     //const {Bills} = billData;
-    //     //const bills = billData.Bills;
-    //     console.log('billData: ', billData)
-    //     //console.log('bills: ', bills);
-    //     // bills.map((element) => {
-    //     //     return <tr>
-    //     //         <td>{element.category}</td>
-    //     //         <td>{element.cost}</td>
-    //     //         <td>{element.date}</td>
-    //     //         <td>{element.description}</td>
-    //     //     </tr>
-    //     // })
-    // }
     const {Bills} = billData;
+    console.log('value of data after the fetch request: ', Bills);
     return (
-        <table>
-            <thead>
+        <table className="expense-table">
+            <thead className="expense-table-headers">
                 <tr>
-                    <td>Category</td>
-                    <td>Cost</td>
-                    <td>Date</td>
-                    <td>Description</td>
+                    {makeTableHeaders(Bills)}
                 </tr>
             </thead>
             <tbody>
-             {makeTableRows(Bills)}
+                {makeTableRows(Bills)}
             </tbody>
         </table>
     )
