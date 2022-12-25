@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './_ExpenseTable.scss';
+import { useSelector } from 'react-redux';
 import { getAllBills } from '../../Services/ExpenseServices';
 
 function makeTableHeaders(data) {
@@ -27,10 +28,13 @@ function makeTableRows(data) {
 
 function ExpenseTable(props) {
     const [billData, setBillData] = useState([]);
+    const bills = useSelector((state) => state.expenses);
+    console.log('bills in expensetable: ', bills);
+   // const dispatch = useDispatch();
     useEffect(() => {
-        fetch('/bills')
-            .then(res => res.json())
-            .then(data => setBillData(data));
+        // fetch('/bills')
+        //     .then(res => res.json())
+        //     .then(data => setBillData(data));
         //setBillData(getAllBills());
     }, []);
 
@@ -39,11 +43,9 @@ function ExpenseTable(props) {
         <table className="expense-table">
             <thead className="expense-table-headers">
                 <tr>
-                    {makeTableHeaders(Bills)}
                 </tr>
             </thead>
             <tbody className="expense-table-body">
-                {makeTableRows(Bills)}
             </tbody>
         </table>
     )

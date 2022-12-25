@@ -1,12 +1,16 @@
 import React from 'react';
 import FancyButton from 'Components/FancyButton';
 import {useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getExpenses } from 'Store/actions/TableActions';
 import './_LandingPage.scss';
 
 function LandingPage() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const navigateToForm = () => {
         navigate('/expenseform');
+        dispatch(getExpenses());
     }
 
     const determineGreeting = () => {
