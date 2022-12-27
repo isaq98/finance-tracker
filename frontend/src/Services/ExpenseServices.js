@@ -5,19 +5,21 @@ export async function getAllBills() {
 }
 
 export async function postNewBill(expenseObj) {
-    console.log('data passed into async function: ', expenseObj);
-    // const postResponse = await fetch({
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //         category: expenseObj?.category,
-    //         cost: expenseObj?.cost,
-    //         date: expenseObj?.date,
-    //         description: expenseObj?.description
-    //     }),
-    //     headers: {
-    //         'Content-Type': 'application-json'
-    //     }
-    // });
-    // const responseJSON = await postResponse.json();
-    // return responseJSON;
+    if(expenseObj) {
+        const {category, cost, date, description} = expenseObj;
+        const postResponse = await fetch('/bills', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            category: category,
+            cost: Number.parseInt(cost),
+            date: date,
+            description: description
+        })
+    });
+        const responseJSON = postResponse.json();
+        return responseJSON;
+    }
 }
