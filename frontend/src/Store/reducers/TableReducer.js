@@ -4,7 +4,7 @@ const initialState = {
 
 export function TableReducer(state = initialState, action) {
     switch(action.type) {
-        case 'SET_ALL_EXPENSES':
+        case 'GET_ALL_EXPENSES':
             return {
                 ...state,
                 expenses: [...action.expenseArr]

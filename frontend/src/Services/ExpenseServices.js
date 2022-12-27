@@ -1,7 +1,5 @@
-export function getAllBills() {
-    let billData = fetch('/bills');
-    let billDataJSON = billData.json();
-        // .then(res => res.json())
-        // .then((data => returnData = data ));
-    console.log('returnData: ', billDataJSON);
+export async function getAllBills() {
+    let billData = await fetch('/bills');
+    let billDataJSON = await billData.json();
+    return billDataJSON;
 }
