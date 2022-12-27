@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import './_ExpenseTable.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllBills } from '../../Services/ExpenseServices';
+import { getAllBills } from '../../Services/ExpenseServices'; //Update this update appropriately
 import { getExpenses } from 'Store/actions/TableActions';
 
 function makeTableHeaders(data) {
@@ -29,7 +29,6 @@ function makeTableRows(data) {
 
 function ExpenseTable(props) {
     const dispatch = useDispatch();
-    //const [billData, setBillData] = useState([]);
     const bills = useSelector((state) => state.expenses);
     useEffect(() => {
         getAllBills().then((data) => dispatch(getExpenses(data?.Bills)));
