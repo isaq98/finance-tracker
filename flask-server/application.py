@@ -109,3 +109,20 @@ def getAllSheets():
             }
         sheetOutput.append(sheet_data)
     return {'Sheets': sheetOutput}
+
+@app.route('/sheets/<id>')
+def get_individual_sheets(id):
+    sheet = Sheet.query.get_or_404(id)
+    return {
+        "month": sheet.month,
+        "year": sheet.year
+    }
+
+@app.route('/sheets/<id>', methods=["DELETE"])
+def deleteSheet(id):
+    sheet = Sheet.query.get(id)
+    if sheet is None:
+        return {"Error": "Not found"}
+    db.session.delete(sheet)
+    db.session.commit()
+    return {"Message": "Sheet was successfully deleted"}
