@@ -5,6 +5,13 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
+class Sheet(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    month = db.Column(db.SmallInteger, nullable=False)
+    year = db.Column(db.SmallInteger, nullable=False)
+
+    def __repr__(self):
+        return f"{self.month} - {self.year}"
 # In order for our API to work, it needs to communicate with a database. This is where the SQLAlchemy ORM (Object Relational Mapper) comes into play
 # Using the ORM, we define everything we want to store in the database as models.
 #
@@ -83,3 +90,22 @@ def update_bill(id):
 
     db.session.commit()
     return{"Message": "Bill was successfully updated"}
+
+@app.route('/sheets', methods=["POST"])
+def createSheet():
+    sheet = Sheet(month=request.json['month'], year=request.json['year'])
+    db.session.add(sheet)
+    db.session.commit()
+    return {'id': sheet.id}
+    
+@app.route('/sheets')
+def getAllSheets():
+    sheets = Sheet.query.all()
+    sheetOutput = []
+    for sheet in sheets:
+        sheet_data = {
+            'month': sheet.month,
+            'year': sheet.year
+            }
+        sheetOutput.append(sheet_data)
+    return {'Sheets': sheetOutput}
