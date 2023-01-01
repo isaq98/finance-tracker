@@ -23,3 +23,20 @@ export async function postNewBill(expenseObj) {
         return responseJSON;
     }
 }
+
+export async function postNewSheet(month, year) {
+    if(month && year) {
+        const response = await fetch('/sheets', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                month: month,
+                year: year
+            })
+        });
+        const responseJSON = response.json();
+        return responseJSON;
+    }
+}

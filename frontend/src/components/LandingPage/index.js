@@ -1,12 +1,12 @@
 import React from 'react';
 import FancyButton from 'Components/FancyButton';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './_LandingPage.scss';
 
 function LandingPage() {
     const navigate = useNavigate();
     const navigateToForm = () => {
-        navigate('/expenseform');
+        navigate('/initialform');
     }
 
     const determineGreeting = () => {

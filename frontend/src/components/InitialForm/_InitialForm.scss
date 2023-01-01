@@ -1,0 +1,14 @@
+.table-year-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 1200px;
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
+    & > input {
+        height: 25px;
+    }
+}
