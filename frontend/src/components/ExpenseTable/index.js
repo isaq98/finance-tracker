@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import './_ExpenseTable.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllBills } from '../../Services/ExpenseServices'; //Update this update appropriately
+import { getAllBills } from 'Services/ExpenseServices';
 import { getExpenses } from 'Store/actions/TableActions';
 
 function makeTableHeaders(data) {
-    if(data) {
-        const responseObj = data[0];
-        const tableHeaders = Object.keys(responseObj);
-        return tableHeaders.map((element) => {
-            return <td key={element}>{element}</td>
-        });
-    } 
+    const responseObj = data[0];
+    const tableHeaders = Object.keys(responseObj);
+    return tableHeaders.map((element) => {
+        return <td key={element}>{element}</td>
+    });
 }
 
 function makeTableRows(data) {
@@ -32,18 +30,18 @@ function ExpenseTable(props) {
     const bills = useSelector((state) => state.expenses);
     useEffect(() => {
         getAllBills().then((data) => dispatch(getExpenses(data?.Bills)));
-    }, []);
+    }, [dispatch]);
 
     //Need to add some type of loading window here while we wait for the API call to update the redux state
     return (
         <table className="expense-table">
             <thead className="expense-table-headers">
                 <tr>
-                    {makeTableHeaders(bills)}
+                {bills.length > 0 && makeTableHeaders(bills)}
                 </tr>
             </thead>
             <tbody className="expense-table-body">
-                {makeTableRows(bills)}
+            {bills.length > 0 && makeTableRows(bills)}
             </tbody>
         </table>
     )
