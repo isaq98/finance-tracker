@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ExpenseTable from 'Components/ExpenseTable';
 import FancyButton from 'Components/FancyButton';
-import { postNewBill } from '../../Services/ExpenseServices';
+import { postNewBill } from 'Services/ExpenseServices';
 import './_ExpenseForm.scss'
 
 function ExpenseForm(props) {
