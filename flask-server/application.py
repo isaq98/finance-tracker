@@ -1,5 +1,6 @@
 from flask import Flask, request, current_app
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -17,13 +18,23 @@ class Sheet(db.Model):
 #
 # A model is used when creating new databases. It is a template that SQL looks at the content of to establish its default objects (i.e. tables, stored procedures, etc.)
 #
+class MyDateTime(db.TypeDecorator):
+    impl = db.Date
+
+    def process_bind_param(self, value, dialect):
+        if type(value) is str:
+            return datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S')
+        return value
+
 class Bill(db.Model):
     # We need to create columns within the database.
     # Ex:
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(60), nullable=False)
     cost = db.Column(db.Float, nullable=False)
-    date = db.Column(db.String(15), nullable=False)
+    date = db.Column(MyDateTime, nullable=False)
+    #date = db.Column(db.String(15), nullable=False)
+    #date = db.Column(db.Date, nullable=False)
     description = db.Column(db.String(120), nullable=False)
 
     # This function is overwritten and it is shorthand for "Representation". Its purpose is to represent our object in a particular manner, which we define here
