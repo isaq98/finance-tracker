@@ -17,8 +17,6 @@ class SheetDateTime(db.TypeDecorator):
 class Sheet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     month = db.Column(SheetDateTime, nullable=False)
-    #month = db.Column(db.SmallInteger, nullable=False)
-    #year = db.Column(db.SmallInteger, nullable=False)
 
     def __repr__(self):
         return f"{self.month}"
@@ -111,7 +109,6 @@ def update_bill(id):
 
 @app.route('/sheets', methods=["POST"])
 def createSheet():
-    #sheet = Sheet(month=request.json['month'], year=request.json['year'])
     sheet = Sheet(month=request.json['month'])
     db.session.add(sheet)
     db.session.commit()
@@ -125,10 +122,6 @@ def getAllSheets():
         sheet_data = {
             'month': sheet.month
         }
-        #sheet_data = {
-         #   'month': sheet.month,
-          #  'year': sheet.year
-           # }
         sheetOutput.append(sheet_data)
     return {'Sheets': sheetOutput}
 
@@ -138,10 +131,6 @@ def get_individual_sheets(id):
     return {
         'month': sheet.month
     }
-    #return {
-     #   "month": sheet.month,
-      #  "year": sheet.year
-    #}
 
 @app.route('/sheets/<id>', methods=["DELETE"])
 def deleteSheet(id):
