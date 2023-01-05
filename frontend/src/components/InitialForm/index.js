@@ -12,13 +12,10 @@ function InitialForm(props) {
         navigate('/expenseform');
     }
     const convertDateToInt = () => {
-        const parsedDate = date.split('-');
-        parsedDate.reverse();
-        postNewSheet(Number.parseInt(parsedDate[0]), Number.parseInt(parsedDate[1]))
-            .then((data) => {
-                //write an action to dispatch and store the month/year in state
-                navigateToForm();
-            });
+        postNewSheet(date).then((data) => {
+            navigateToForm();
+        });
+        //write an action to dispatch and store the month/year in state
         //If successful, redirect to expense table with redux storing the month and year in state
         //If unsuccessful, clear field and ask user to reenter a date
     }

@@ -24,16 +24,15 @@ export async function postNewBill(expenseObj) {
     }
 }
 
-export async function postNewSheet(month, year) {
-    if(month && year) {
+export async function postNewSheet(date) {
+    if(date) {
         const response = await fetch('/sheets', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                month: month,
-                year: year
+                month: date
             })
         });
         const responseJSON = response.json();

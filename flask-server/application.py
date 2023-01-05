@@ -1,29 +1,45 @@
 from flask import Flask, request, current_app
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
+class SheetDateTime(db.TypeDecorator):
+    impl = db.Date
+
+    def process_bind_param(self, value, dialect):
+        if type(value) is str:
+            return datetime.datetime.strptime(value, '%Y-%m')
+        return value
+
 class Sheet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    month = db.Column(db.SmallInteger, nullable=False)
-    year = db.Column(db.SmallInteger, nullable=False)
+    month = db.Column(SheetDateTime, nullable=False)
 
     def __repr__(self):
-        return f"{self.month} - {self.year}"
+        return f"{self.month}"
 # In order for our API to work, it needs to communicate with a database. This is where the SQLAlchemy ORM (Object Relational Mapper) comes into play
 # Using the ORM, we define everything we want to store in the database as models.
 #
 # A model is used when creating new databases. It is a template that SQL looks at the content of to establish its default objects (i.e. tables, stored procedures, etc.)
 #
+class MyDateTime(db.TypeDecorator):
+    impl = db.Date
+
+    def process_bind_param(self, value, dialect):
+        if type(value) is str:
+            return datetime.datetime.strptime(value, '%Y-%m-%d')
+        return value
+
 class Bill(db.Model):
     # We need to create columns within the database.
     # Ex:
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(60), nullable=False)
     cost = db.Column(db.Float, nullable=False)
-    date = db.Column(db.String(15), nullable=False)
+    date = db.Column(MyDateTime, nullable=False)
     description = db.Column(db.String(120), nullable=False)
 
     # This function is overwritten and it is shorthand for "Representation". Its purpose is to represent our object in a particular manner, which we define here
@@ -93,7 +109,7 @@ def update_bill(id):
 
 @app.route('/sheets', methods=["POST"])
 def createSheet():
-    sheet = Sheet(month=request.json['month'], year=request.json['year'])
+    sheet = Sheet(month=request.json['month'])
     db.session.add(sheet)
     db.session.commit()
     return {'id': sheet.id}
@@ -104,9 +120,8 @@ def getAllSheets():
     sheetOutput = []
     for sheet in sheets:
         sheet_data = {
-            'month': sheet.month,
-            'year': sheet.year
-            }
+            'month': sheet.month
+        }
         sheetOutput.append(sheet_data)
     return {'Sheets': sheetOutput}
 
@@ -114,8 +129,7 @@ def getAllSheets():
 def get_individual_sheets(id):
     sheet = Sheet.query.get_or_404(id)
     return {
-        "month": sheet.month,
-        "year": sheet.year
+        'month': sheet.month
     }
 
 @app.route('/sheets/<id>', methods=["DELETE"])
