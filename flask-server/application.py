@@ -6,13 +6,22 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 db = SQLAlchemy(app)
 
+class SheetDateTime(db.TypeDecorator):
+    impl = db.Date
+
+    def process_bind_param(self, value, dialect):
+        if type(value) is str:
+            return datetime.datetime.strptime(value, '%Y-%m')
+        return value
+
 class Sheet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    month = db.Column(db.SmallInteger, nullable=False)
-    year = db.Column(db.SmallInteger, nullable=False)
+    month = db.Column(SheetDateTime, nullable=False)
+    #month = db.Column(db.SmallInteger, nullable=False)
+    #year = db.Column(db.SmallInteger, nullable=False)
 
     def __repr__(self):
-        return f"{self.month} - {self.year}"
+        return f"{self.month}"
 # In order for our API to work, it needs to communicate with a database. This is where the SQLAlchemy ORM (Object Relational Mapper) comes into play
 # Using the ORM, we define everything we want to store in the database as models.
 #
@@ -102,7 +111,8 @@ def update_bill(id):
 
 @app.route('/sheets', methods=["POST"])
 def createSheet():
-    sheet = Sheet(month=request.json['month'], year=request.json['year'])
+    #sheet = Sheet(month=request.json['month'], year=request.json['year'])
+    sheet = Sheet(month=request.json['month'])
     db.session.add(sheet)
     db.session.commit()
     return {'id': sheet.id}
@@ -113,9 +123,12 @@ def getAllSheets():
     sheetOutput = []
     for sheet in sheets:
         sheet_data = {
-            'month': sheet.month,
-            'year': sheet.year
-            }
+            'month': sheet.month
+        }
+        #sheet_data = {
+         #   'month': sheet.month,
+          #  'year': sheet.year
+           # }
         sheetOutput.append(sheet_data)
     return {'Sheets': sheetOutput}
 
@@ -123,9 +136,12 @@ def getAllSheets():
 def get_individual_sheets(id):
     sheet = Sheet.query.get_or_404(id)
     return {
-        "month": sheet.month,
-        "year": sheet.year
+        'month': sheet.month
     }
+    #return {
+     #   "month": sheet.month,
+      #  "year": sheet.year
+    #}
 
 @app.route('/sheets/<id>', methods=["DELETE"])
 def deleteSheet(id):
