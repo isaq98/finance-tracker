@@ -23,7 +23,7 @@ class MyDateTime(db.TypeDecorator):
 
     def process_bind_param(self, value, dialect):
         if type(value) is str:
-            return datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M:%S')
+            return datetime.datetime.strptime(value, '%Y-%m-%d')
         return value
 
 class Bill(db.Model):
@@ -33,8 +33,6 @@ class Bill(db.Model):
     category = db.Column(db.String(60), nullable=False)
     cost = db.Column(db.Float, nullable=False)
     date = db.Column(MyDateTime, nullable=False)
-    #date = db.Column(db.String(15), nullable=False)
-    #date = db.Column(db.Date, nullable=False)
     description = db.Column(db.String(120), nullable=False)
 
     # This function is overwritten and it is shorthand for "Representation". Its purpose is to represent our object in a particular manner, which we define here
