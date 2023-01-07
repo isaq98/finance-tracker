@@ -5,10 +5,11 @@ import './_LandingPage.scss';
 
 function LandingPage() {
     const navigate = useNavigate();
-    const navigateToForm = () => {
-        navigate('/initialform');
-    }
+    
+    const navigateToForm = () => { navigate('/initialform'); };
 
+    const navigateToSheets = () => { navigate('/sheetlist'); };
+    
     const determineGreeting = () => {
         const date = new Date();
         const time = date.getHours();
@@ -29,7 +30,7 @@ function LandingPage() {
                     <p>{determineGreeting()}, what would you like to do?</p>
                 </div>
                 <div className="button-div">
-                    <FancyButton buttonText='view' propClass='landing'/>
+                    <FancyButton buttonText='view' propClass='landing' buttonFunction={navigateToSheets}/>
                     <FancyButton buttonText='create' propClass='landing' buttonFunction={navigateToForm}/>
                 </div>
             </div>
