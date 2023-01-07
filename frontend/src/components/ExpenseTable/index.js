@@ -25,7 +25,7 @@ function makeTableRows(data) {
 
 function ExpenseTable(props) {
     const bills = useSelector((state) => state.expenses);
-
+    const sheetDate = useSelector((state) => state.sheet_date);
     //Need to add some type of loading window here while we wait for the API call to update the redux state
     return (
         <table className="expense-table">
