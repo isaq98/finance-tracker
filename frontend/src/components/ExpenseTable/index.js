@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './_ExpenseTable.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { getAllBills } from 'Services/ExpenseServices';
-import { getExpenses } from 'Store/actions/TableActions';
+import { useSelector } from 'react-redux';
 
 function makeTableHeaders(data) {
     const responseObj = data[0];
@@ -26,11 +24,7 @@ function makeTableRows(data) {
 }
 
 function ExpenseTable(props) {
-    const dispatch = useDispatch();
     const bills = useSelector((state) => state.expenses);
-    useEffect(() => {
-        getAllBills().then((data) => dispatch(getExpenses(data?.Bills)));
-    }, [dispatch]);
 
     //Need to add some type of loading window here while we wait for the API call to update the redux state
     return (
