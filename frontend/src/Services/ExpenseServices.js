@@ -4,6 +4,12 @@ export async function getAllBills() {
     return billDataJSON;
 }
 
+export async function getAllSheets() {
+    const sheetData = await fetch('/sheets');
+    const sheetJSON = await sheetData.json();
+    return sheetJSON;
+}
+
 export async function postNewBill(expenseObj) {
     if(expenseObj) {
         const {category, cost, date, description} = expenseObj;
