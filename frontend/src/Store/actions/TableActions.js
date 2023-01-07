@@ -1,5 +1,5 @@
-export function getExpenses(expenseArr) {
-    return { type: 'GET_ALL_EXPENSES', expenseArr };
+export function setExpenses(expenseArr) {
+    return { type: 'SET_ALL_EXPENSES', expenseArr };
 }
 
 export function setSheetDate(date) {

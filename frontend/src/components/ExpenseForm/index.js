@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ExpenseTable from 'Components/ExpenseTable';
 import FancyButton from 'Components/FancyButton';
 import { postNewBill, getAllBills } from 'Services/ExpenseServices';
-import { getExpenses } from 'Store/actions/TableActions';
+import { setExpenses } from 'Store/actions/TableActions';
 import './_ExpenseForm.scss'
 
 function ExpenseForm(props) {
@@ -12,12 +12,13 @@ function ExpenseForm(props) {
     const [cost, setCost] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
+    const expenses = useSelector((state) => state.expenses);
 
     const handleSubmit = event => {
         event.preventDefault();
         postNewBill({category, cost, date, description}).then(() => {
             getAllBills().then((data) => {
-                dispatch(getExpenses(data?.Bills));
+                dispatch(setExpenses(data?.Bills));
             })
         });
         setCost('');
@@ -26,9 +27,9 @@ function ExpenseForm(props) {
     };
 
     useEffect(() => {
-      getAllBills().then((data) => {
-        dispatch(getExpenses(data?.Bills))
-      });
+        getAllBills().then((data) => {
+            dispatch(setExpenses(data?.Bills))
+        });
     }, [dispatch]);
 
     const {className} = props;

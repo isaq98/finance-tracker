@@ -10,7 +10,7 @@ export function TableReducer(state = initialState, action) {
                 ...state,
                 sheet_date: action.date
             }
-        case 'GET_ALL_EXPENSES':
+        case 'SET_ALL_EXPENSES':
             return {
                 ...state,
                 expenses: [...action.expenseArr]

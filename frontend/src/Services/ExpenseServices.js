@@ -10,6 +10,12 @@ export async function getAllSheets() {
     return sheetJSON;
 }
 
+export async function getIndividualSheet(id) {
+    const sheetData = await fetch(`/sheets/${id}`);
+    const sheetJSON = await sheetData.json();
+    return sheetJSON;
+}
+
 export async function postNewBill(expenseObj) {
     if(expenseObj) {
         const {category, cost, date, description} = expenseObj;

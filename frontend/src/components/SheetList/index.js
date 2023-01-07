@@ -1,15 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { getAllSheets } from 'Services/ExpenseServices';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getAllSheets, getAllBills } from 'Services/ExpenseServices';
+import { setSheetDate, setExpenses } from 'Store/actions/TableActions';
 
 function SheetList(props) {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [sheets, setSheets] = useState([]);
+
+    const navigateToTable = (dateStr) => {
+        //dispatch(setSheetDate(dateStr));
+        const dateObj = dateStr.toLocaleString('en-US', {
+            month: "long",
+            timeZone: 'GMT'
+        });
+        getAllBills().then((data) => {
+           const retArr = data?.Bills.filter((bill) => {
+                const billDate = new Date(bill.date);
+                const billMonth = billDate.toLocaleString('en-US', {
+                    month: "long",
+                    timeZone: "GMT"
+                });
+                return dateObj === billMonth;
+            });
+            dispatch(setExpenses(retArr));
+        });
+        navigate('/expenseform');
+    }
 
     const renderAllSheets = () => {
         if(sheets.length > 0) {
-            return sheets.map((element) => {
+            return sheets.map((element, i) => {
+                const objectDate = new Date(element.month);
+                const displayDate = objectDate.toLocaleString('en-US', {
+                    month: "long",
+                    year: "numeric",
+                    timeZone: "GMT"
+                });
                 return (
-                    <div key={element.month}>
-                        <h3>{element.month}</h3>
+                    <div key={element.month} className={`sheet-row-${i}`}>
+                        <h3>{displayDate}</h3>
+                        <p onClick={() => navigateToTable(objectDate)}>See Month</p>
                     </div>
                 )
             })
