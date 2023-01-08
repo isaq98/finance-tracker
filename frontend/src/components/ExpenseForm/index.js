@@ -28,10 +28,16 @@ function ExpenseForm(props) {
     };
 
     useEffect(() => {
-        getAllBills().then((data) => {
-            dispatch(setExpenses(data?.Bills))
-        });
-    }, [dispatch]);
+        expenses.filter((element) => {
+            const dateObj = new Date(element.date);
+            const monthYear = dateObj.toLocaleString('en-US', {
+                month: 'long',
+                year: 'numeric',
+                timeZone: 'GMT'
+            });
+            return monthYear === sheetMonth;
+        })
+    }, [sheetMonth, expenses])
 
     const {className} = props;
     return (
