@@ -13,6 +13,7 @@ function ExpenseForm(props) {
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const expenses = useSelector((state) => state.expenses);
+    const sheetMonth = useSelector((state) => state.sheet_date);
 
     const handleSubmit = event => {
         event.preventDefault();

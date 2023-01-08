@@ -14,17 +14,20 @@ function InitialForm(props) {
     const navigateToForm = () => {
         navigate('/expenseform');
     }
-    const convertDateToInt = () => {
+    const createSheet = () => {
         postNewSheet(date).then((data) => {
-            dispatch(setSheetDate(date));
+            const dateObj = new Date(date);
+            const monthYear = dateObj.toLocaleString('en-US', {
+                month: "long",
+                year: "numeric",
+                timeZone: "GMT"
+            });
+            dispatch(setSheetDate(monthYear));
             navigateToForm();
         }).catch( () => {
             setDate('');
         }
         );
-        //write an action to dispatch and store the month/year in state
-        //If successful, redirect to expense table with redux storing the month and year in state
-        //If unsuccessful, clear field and ask user to reenter a date
     }
 
     return (
@@ -32,7 +35,7 @@ function InitialForm(props) {
             <h2 className="sheet-creation-header-text">Enter the month and year the sheet is for: </h2>
             <label htmlFor="month"></label>
             <input type="month" name="month" placeholder="MM-YYYY" value={date} onChange={event => setDate(event.target.value)}></input>
-            <button onClick={convertDateToInt}>Press me</button>
+            <button onClick={() => createSheet()}>Press me</button>
         </div>
     )
 }

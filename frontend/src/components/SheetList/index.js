@@ -10,16 +10,18 @@ function SheetList(props) {
     const [sheets, setSheets] = useState([]);
 
     const navigateToTable = (dateStr) => {
-        //dispatch(setSheetDate(dateStr));
         const dateObj = dateStr.toLocaleString('en-US', {
             month: "long",
+            year: "numeric",
             timeZone: 'GMT'
         });
+        dispatch(setSheetDate(dateObj));
         getAllBills().then((data) => {
            const retArr = data?.Bills.filter((bill) => {
                 const billDate = new Date(bill.date);
                 const billMonth = billDate.toLocaleString('en-US', {
                     month: "long",
+                    year: "numeric",
                     timeZone: "GMT"
                 });
                 return dateObj === billMonth;
