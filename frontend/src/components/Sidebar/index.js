@@ -7,8 +7,8 @@ function Sidebar(props) {
     const constructSidebarButtons = () => {
         return sidebarEnum.map((element) => {
             return (
-                <div key={element.title}>
-                    <button>{element.title}</button>
+                <div className="sidebar-selector" key={element.title}>
+                    <button className="sidebar-navigation-button">{element.title}</button>
                 </div>
             )
         })
