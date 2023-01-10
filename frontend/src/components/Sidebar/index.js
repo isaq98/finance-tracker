@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './_Sidebar.scss';
 import { sidebarEnum } from 'SingleUse/sidebarEnum';
 
 function Sidebar(props) {
+    const [sidebarVisibility, setVisibility] = useState(false);
 
     const constructSidebarButtons = () => {
         return sidebarEnum.map((element) => {
@@ -15,9 +16,12 @@ function Sidebar(props) {
     };
 
     return (
+        sidebarVisibility ? 
         <div className="sidebar-container">
             {constructSidebarButtons()}
         </div>
+        :
+        <h4 onClick={() => setVisibility(!sidebarVisibility)}>Click me</h4>
     );
 }
 
