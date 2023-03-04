@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getAllSheets, getAllBills } from 'Services/ExpenseServices';
 import { setSheetDate, setExpenses } from 'Store/actions/TableActions';
+import './_SheetList.scss'
 
 function SheetList(props) {
     const navigate = useNavigate();
@@ -41,9 +42,10 @@ function SheetList(props) {
                     timeZone: "GMT"
                 });
                 return (
-                    <div key={element.month} className={`sheet-row-${i}`}>
-                        <h3>{displayDate}</h3>
-                        <p onClick={() => navigateToTable(objectDate)}>See Month</p>
+                    <div key={element.month} className={`sheet-row ${i}`}>
+                        <p className="sheet-navigation-content">
+                            {displayDate} <span className="sheet-button" onClick={() => navigateToTable(objectDate)}>See Month</span>
+                        </p>
                     </div>
                 )
             })
@@ -57,7 +59,7 @@ function SheetList(props) {
     }, []);
 
     return(
-        <div>
+        <div className="sheet-container">
         {renderAllSheets()}
         </div>
     )

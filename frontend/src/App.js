@@ -9,7 +9,6 @@ import {Routes, Route} from 'react-router-dom';
 function App() {
   return (
     <div className="app">
-    <Sidebar/>
     <Routes>
       <Route path="/" element={<LandingPage />}/>
       <Route path="/initialform" element={<InitialForm />}/>

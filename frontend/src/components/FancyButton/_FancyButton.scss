@@ -2,7 +2,6 @@
     height: 50px;
     width: 100px;
     background-color: transparent;
-    color: #FFF;
     border: solid;
     border-radius: 10px;
     text-transform: capitalize;
@@ -12,7 +11,7 @@
 }
 
 .landing:hover {
-    background-color: #FFF;
-    color: #719492;
+    background-color: #000;
+    color: #fff;
     cursor: pointer;
 }

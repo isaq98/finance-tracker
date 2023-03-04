@@ -1,0 +1,19 @@
+.sheet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    & > .sheet-row {
+        width: 50%;
+        border: 2px solid black;
+        margin: 20px 10px;
+        border-radius: 10px;
+        & > .sheet-navigation-content {
+            display: flex;
+            justify-content: space-between;
+            & > .sheet-button {
+                cursor: pointer;
+            }
+        }
+    }
+}
