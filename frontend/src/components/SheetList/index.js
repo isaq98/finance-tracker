@@ -42,9 +42,9 @@ function SheetList(props) {
                     timeZone: "GMT"
                 });
                 return (
-                    <div key={element.month} className={`sheet-row ${i}`}>
+                    <div key={element.month} className={`sheet-row ${i}`} onClick={() => navigateToTable(objectDate)}>
                         <p className="sheet-navigation-content">
-                            {displayDate} <span className="sheet-button" onClick={() => navigateToTable(objectDate)}>See Month</span>
+                            {displayDate} <span className="sheet-button">See Month</span>
                         </p>
                     </div>
                 )

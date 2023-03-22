@@ -3,9 +3,15 @@
     width: 100%;
     max-width: 1000px;
     flex-direction: column;
+    border-collapse: collapse;
+    border: 2px solid #F8F8F8;
+    border-radius: 10px;
+    box-shadow: 5px 5px #F5F5F5;
     & > .expense-table-headers {
+        display: flex;
+        align-items: center;
         text-transform: capitalize;
-        font-weight: bold;
+        height: 30px;
         & > tr {
             & > td {
                 width: 250px;
@@ -13,7 +19,14 @@
         }
     }
     & > .expense-table-body {
+        & > tr:nth-child(2n + 1) {
+            background-color: #F8F8F8;
+        }
         & > tr {
+            & > td:first-child {
+                text-transform: capitalize;
+            }
+            height: 50px;
             & > td {
                 width: 250px;
             }
