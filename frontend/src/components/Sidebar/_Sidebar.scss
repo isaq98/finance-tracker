@@ -8,7 +8,10 @@
     color: white;
 
     & > .sidebar-header-container {
+        display: flex;
+        align-items: center;
         margin-top: 15px;
+        margin-bottom: 35px;
         padding-left: 25px;
         & > svg {
             height: 30px;
@@ -21,8 +24,14 @@
     }
 
     & > .sidebar-selector {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        padding-left: 30px;
         height: 35px;
-        //border-bottom: 1px solid white;
+        .fill-white-svg {
+            fill: white;
+        }
         & > .sidebar-navigation-button {
             border: none;
             width: 100%;
@@ -30,5 +39,14 @@
             background: transparent;
             color: white;
         }
+        span {
+            padding-left: 15px;
+        }
+    }
+
+    & > .sidebar-selector:hover {
+        cursor: pointer;
+        background-color: #424242;
+        border-radius: 15px;
     }
 }

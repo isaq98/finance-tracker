@@ -1,20 +1,9 @@
-import React, { useState } from 'react';
 import './_Sidebar.scss';
 import { sidebarEnum } from 'SingleUse/sidebarEnum';
 import { useNavigate } from 'react-router-dom';
-import useOutsideClick from 'CustomHooks/useOutsideClick';
 
 function Sidebar(props) {
-    //const [sidebarVisibility, setVisibility] = useState(false);
     const navigate = useNavigate();
-
-    // const handleClick = () => {
-    //     setVisibility((currState) => {
-    //         currState = !currState;
-    //     });
-    // }
-
-    //const ref = useOutsideClick(handleClick)
 
     function determineRouting(buttonTitle) {
         switch(buttonTitle) {
@@ -32,8 +21,8 @@ function Sidebar(props) {
     const constructSidebarButtons = () => {
         return sidebarEnum.map((element) => {
             return (
-                <div className="sidebar-selector" key={element.title}>
-                    <button className="sidebar-navigation-button" onClick={() => navigate(determineRouting(element.title))}>{element.title}</button>
+                <div className="sidebar-selector" key={element.title} onClick={() => navigate(determineRouting(element.title))}>
+                    {element.svgIcon} <span>{element.title}</span>
                 </div>
             )
         })
@@ -61,12 +50,6 @@ function Sidebar(props) {
             </div>
             {constructSidebarButtons()}
         </div>
-        // sidebarVisibility ? 
-        // <div className="sidebar-container" ref={ref} onClick={(event) => {event.stopPropagation()}}>
-        //     {constructSidebarButtons()}
-        // </div>
-        // :
-        // <h4 onClick={() => setVisibility(!sidebarVisibility)}>Click me</h4>
     );
 }
 
