@@ -1,14 +1,30 @@
 .sidebar-container {
     position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 15%;
-    background-color: black;
+    background-color: #091928;
     color: white;
+
+    & > .sidebar-header-container {
+        margin-top: 15px;
+        padding-left: 25px;
+        & > svg {
+            height: 30px;
+            width: 30px;
+            fill: white;
+        }
+        span {
+            padding-left: 10px;
+        }
+    }
 
     & > .sidebar-selector {
         height: 35px;
-        border-bottom: 1px solid white;
+        //border-bottom: 1px solid white;
         & > .sidebar-navigation-button {
+            border: none;
             width: 100%;
             height: 100%;
             background: transparent;
