@@ -5,3 +5,7 @@ export function setExpenses(expenseArr) {
 export function setSheetDate(date) {
     return { type: 'SET_SHEET_DATE', date };
 }
+
+export function setSectionTitle(title) {
+    return { type: 'SET_SECTION_TITLE', title };
+}

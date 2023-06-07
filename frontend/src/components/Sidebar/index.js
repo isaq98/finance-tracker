@@ -1,19 +1,26 @@
 import './_Sidebar.scss';
 import { sidebarEnum } from 'SingleUse/sidebarEnum';
 import { useNavigate } from 'react-router-dom';
+import { setSectionTitle } from 'Store/actions/TableActions';
+import { useDispatch } from 'react-redux';
 
 function Sidebar(props) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     function determineRouting(buttonTitle) {
         switch(buttonTitle) {
             case 'Home':
+                dispatch(setSectionTitle(buttonTitle));
                 return '/';
             case 'Create':
+                dispatch(setSectionTitle(buttonTitle));
                 return '/initialform';
             case 'View':
+                dispatch(setSectionTitle(buttonTitle));
                 return 'sheetlist';
             default:
+                dispatch(setSectionTitle('Home'));
                 return;
         }
     }

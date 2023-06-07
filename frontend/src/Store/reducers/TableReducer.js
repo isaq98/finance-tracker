@@ -1,6 +1,7 @@
 const initialState = {
     sheet_date: '',
-    expenses: []
+    expenses: [],
+    section_title: 'Home'
 };
 
 export function TableReducer(state = initialState, action) {
@@ -14,6 +15,11 @@ export function TableReducer(state = initialState, action) {
             return {
                 ...state,
                 expenses: [...action.expenseArr]
+            }
+        case 'SET_SECTION_TITLE':
+            return {
+                ...state,
+                section_title: action.title
             }
         default:
             return state;
