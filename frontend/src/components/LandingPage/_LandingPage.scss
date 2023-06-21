@@ -1,18 +1,11 @@
-.landing-page {
-    height: 95vh;
-    & > .center-content {
-        font-size: 24pt;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
+.landing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96vh;
+}
 
-        .button-div {
-            display: flex;
-            width: 400px;
-            padding-top: 15px;
-            justify-content: center;
-        }
-    }
+
+h3 {
+    font-family: 'Inter', sans-serif;
 }

@@ -15,7 +15,7 @@ function App() {
     <Sidebar />
     <Headbar sectionTitle={sectionTitle} />
     <Routes>
-      <Route path="/" element={<LandingPage />}/>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/initialform" element={<InitialForm />}/>
       <Route path="/expenseform" element={<ExpenseForm />}/>
       <Route path="/sheetlist" element={<SheetList />}/>

@@ -1,39 +1,9 @@
-import React from 'react';
-import FancyButton from 'Components/FancyButton';
-import { useNavigate } from 'react-router-dom';
 import './_LandingPage.scss';
 
 function LandingPage() {
-    const navigate = useNavigate();
-    
-    const navigateToForm = () => { navigate('/initialform'); };
-
-    const navigateToSheets = () => { navigate('/sheetlist'); };
-    
-    const determineGreeting = () => {
-        const date = new Date();
-        const time = date.getHours();
-        switch(true) {
-            case time > 12 && time < 16:
-                return "Good afternoon";
-            case time > 16 && time <= 23:
-                return "Good evening";
-            default:
-                return "Good morning";
-        }
-    }
-
     return (
-        <div className="landing-page">
-            <div className="center-content">
-                <div className="landing-text">
-                    <p>{determineGreeting()}, what would you like to do?</p>
-                </div>
-                <div className="button-div">
-                    <FancyButton buttonText='view' propClass='landing' buttonFunction={navigateToSheets}/>
-                    <FancyButton buttonText='create' propClass='landing' buttonFunction={navigateToForm}/>
-                </div>
-            </div>
+        <div className="landing-container">
+            <h3>Hello, Welcome to the Finance Manager!</h3>
         </div>
     )
 }
