@@ -8,15 +8,15 @@
 .input-form {
     width: 100%;
     max-width: 1000px;
-    height: 25%;
     justify-content: center;
     margin-bottom: 50px;
     & > form {
         display: flex;
         width: 100%;
         max-width: 1000px;
-        border-style: solid;
-        box-shadow: 5px 5px;
+        border: 1px solid #DFDFDF;
+        border-radius: 10px;
+        box-shadow: 5px 5px #BFBFBF;
         padding: 25px 50px;
         & > select, input, button {
             margin: 5px;
