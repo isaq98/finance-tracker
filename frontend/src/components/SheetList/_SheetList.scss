@@ -3,17 +3,18 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 100%;
     & > .sheet-row {
         width: 50%;
-        border: 2px solid black;
-        margin: 20px 10px;
+        height: 100px;
+        border: 1px solid #D7D7D7;
+        margin: 15px;
         border-radius: 10px;
         cursor: pointer;
         transition: transform .2s;
         & > .sheet-navigation-content {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
+            font-weight: bold;
+            padding: 10px 0px 0px 25px;
         }
     }
     & > .sheet-row:hover {

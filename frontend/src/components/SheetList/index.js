@@ -44,7 +44,7 @@ function SheetList(props) {
                 return (
                     <div key={element.month} className={`sheet-row ${i}`} onClick={() => navigateToTable(objectDate)}>
                         <p className="sheet-navigation-content">
-                            {displayDate} <span className="sheet-button">See Month</span>
+                            {displayDate}
                         </p>
                     </div>
                 )

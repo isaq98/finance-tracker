@@ -3,6 +3,7 @@ import { sidebarEnum } from 'SingleUse/sidebarEnum';
 import { useNavigate } from 'react-router-dom';
 import { setSectionTitle } from 'Store/actions/TableActions';
 import { useDispatch } from 'react-redux';
+import Headbar from 'Components/Headbar';
 
 function Sidebar(props) {
     const navigate = useNavigate();
@@ -36,6 +37,8 @@ function Sidebar(props) {
     };
 
     return (
+        <>
+        <Headbar />
         <div className="sidebar-container" onClick={(event) => {event.stopPropagation()}}>
             <div className="sidebar-header-container">
                 <svg xmlnsRdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlnsCc="http://web.resource.org/cc/" xmlnsDc="http://purl.org/dc/elements/1.1/" viewBox="0 0 468 468" version="1.0"><g transform="translate(0 468) scale(.078 -.078)">
@@ -57,6 +60,7 @@ function Sidebar(props) {
             </div>
             {constructSidebarButtons()}
         </div>
+        </>
     );
 }
 
