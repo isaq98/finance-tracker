@@ -26,19 +26,20 @@
         & > .expense-table-row {
             & > .table-cell-category {
                 & > .expense-category-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     margin-left: 8px;
+                    border-radius: 10px;
+                    height: 20px;
                 }
             }
             &.food {
                 & > .table-cell-category {
                     & > .expense-category-container {
                         background-color: #DCFFE6;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
                         width: 60px;
                         height: 20px;
-                        border-radius: 10px;
                         & > p {
                             color: #19B444;
                             font-weight: bold;
@@ -50,12 +51,7 @@
                 & > .table-cell-category {
                     & > .expense-category-container {
                         background-color: #DFEFFF;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
                         width: 125px;
-                        height: 20px;
-                        border-radius: 10px;
                         & > p {
                             color: #3399FF;
                             font-weight: bold;
@@ -67,12 +63,7 @@
                 & > .table-cell-category {
                     & > .expense-category-container {
                         background-color: #FFFFD0;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
                         width: 85px;
-                        height: 20px;
-                        border-radius: 10px;
                         & > p {
                             color: #8B7F45;
                             font-weight: bold;
