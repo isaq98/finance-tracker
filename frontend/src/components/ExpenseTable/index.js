@@ -11,10 +11,10 @@ function makeTableHeaders(data) {
 }
 
 function makeTableRows(data) {
-    return data.map((element, index) => {
+    return data.map((element) => {
        return (
-       <tr key={element.description} className={`expense-table-row-${index}`}>
-            <td>{element.category}</td>
+       <tr key={element.description} className={`expense-table-row ${element.category}`}>
+            <td className="table-cell-category"><div className="expense-category-container"><p>{element.category}</p></div></td>
             <td>${element.cost}</td>
             <td>{element.date}</td>
             <td>{element.description}</td>

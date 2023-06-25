@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 100%;
+    margin-top: 150px;
+    margin-left: 100px;
 }
 .input-form {
     width: 100%;
@@ -16,8 +17,8 @@
         max-width: 1000px;
         border: 1px solid #DFDFDF;
         border-radius: 10px;
-        box-shadow: 5px 5px #BFBFBF;
-        padding: 25px 50px;
+        box-shadow: 5px 5px #DFDFDF;
+        padding: 15px 0px;
         & > select, input, button {
             margin: 5px;
         }

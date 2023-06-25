@@ -11,14 +11,76 @@
         display: flex;
         align-items: center;
         text-transform: capitalize;
+        background-color: #091928;
+        color: white;
+        border-radius: 4px;
         height: 30px;
         & > tr {
             & > td {
+                padding-left: 15px;
                 width: 250px;
             }
         }
     }
     & > .expense-table-body {
+        & > .expense-table-row {
+            & > .table-cell-category {
+                & > .expense-category-container {
+                    margin-left: 8px;
+                }
+            }
+            &.food {
+                & > .table-cell-category {
+                    & > .expense-category-container {
+                        background-color: #DCFFE6;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 10px;
+                        & > p {
+                            color: #19B444;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            &.miscellaneous {
+                & > .table-cell-category {
+                    & > .expense-category-container {
+                        background-color: #DFEFFF;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 125px;
+                        height: 20px;
+                        border-radius: 10px;
+                        & > p {
+                            color: #3399FF;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            &.constant {
+                & > .table-cell-category {
+                    & > .expense-category-container {
+                        background-color: #FFFFD0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 85px;
+                        height: 20px;
+                        border-radius: 10px;
+                        & > p {
+                            color: #8B7F45;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
         & > tr:nth-child(2n + 1) {
             background-color: #F8F8F8;
         }
