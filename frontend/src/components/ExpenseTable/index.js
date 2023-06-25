@@ -20,9 +20,9 @@ function makeTableRows(data) {
        return (
        <tr key={element.description} className={`expense-table-row ${element.category}`}>
             <td className="table-cell-category"><div className="expense-category-container"><p>{element.category}</p></div></td>
-            <td>${element.cost}</td>
-            <td>{formatDate(element.date)}</td>
-            <td>{element.description}</td>
+            <td><p>${element.cost}</p></td>
+            <td><p>{formatDate(element.date)}</p></td>
+            <td><p>{element.description}</p></td>
         </tr>
        )
     })

@@ -24,6 +24,11 @@
     }
     & > .expense-table-body {
         & > .expense-table-row {
+            & > td {
+                & > p {
+                    padding-left: 14px;
+                }
+            }
             & > .table-cell-category {
                 & > .expense-category-container {
                     display: flex;
